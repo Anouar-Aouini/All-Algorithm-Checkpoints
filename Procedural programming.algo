@@ -1,0 +1,33 @@
+// The procedure dot_product
+PROCEDURE dot_product(v1,v2:ARRAY_OF INTEGER[])
+VAR
+    ps:INTEGER:=0;//Initialization of ps
+BEGIN
+    FOR i FROM 0 TO v1.length STEP 1  DO
+        ps:=ps+v1[i]*v2[i];
+    END_FOR
+END
+// Algorithm 
+ALGORITHM Are_orthogonal
+VAR
+    Vector:ARRAY_OF INTEGER[];//declaring vectors
+    i,j:INTEGER;
+BEGIN
+    FOR i FROM 0 TO Vector.length-1 STEP 1  DO
+        FOR j FROM i+1 TO Vector.length-1 STEP 1  DO
+            IF (dot_product(Vector[i],Vector[j])=0) THEN
+                write(Vector[i],"and",Vector[j],"are orthogonal.");
+            END_IF
+        END_FOR
+    END_FOR
+END
+//Modifying the procedure to get a function
+FUNCTION dot-product(v1,v2:ARRAY_OF INTEGER[]) : INTEGER
+VAR
+    ps:INTEGER:=0;
+BEGIN
+    FOR i FROM 0 TO v1.length STEP 1  DO
+        ps:=ps+v1[i]*v2[i];
+    END_FOR
+    RETURN ps ;
+END

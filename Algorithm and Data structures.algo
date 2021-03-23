@@ -1,0 +1,35 @@
+//Algorithm's name
+ALGORITHM  Sentence_treatment
+//Variables declaration
+VAR
+Text:String;
+vowel_count:INTEGER:=0;
+word_count:INTEGER:=0;
+char_count:INTEGER:=0;
+//Algorithm's body
+BEGIN
+    Read(Text);
+WHILE (Text[char_count]<>".") DO
+    SWITCH (Text[char_count]) DO
+    CASE "a" : 
+    CASE "e" :      xcvgyhu edrftgyh edrftgyh sedrftgy drftgyh.
+    CASE "y" :
+    CASE "u" :
+    CASE "i" :
+    CASE "o" :
+    vowel_count:=vowel_count+1;
+    char_count:=char_count+1;
+    BREAK;
+    CASE " ":
+    char_count:=char_count+1;
+    word_count:=word_count+1;
+    BREAK;
+    DEFAULT :
+    char_count:=char_count+1;
+    BREAK;
+    END_SWITCH
+END_WHILE
+    char_count:=char_count+1;
+    word_count:=word_count+1;
+    Write("The length of the sentence is:",char_count," the number of words is:",word_count," and the number of vowels is:",vowel_count);
+END

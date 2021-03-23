@@ -1,0 +1,134 @@
+// First Problem
+// Solution N°1: Data Stucture:Array
+ALGORITHM Sum_Of_Distinct_Elements_1
+VAR
+   tab1 : ARRAY_OF INTEGER[20]; // declaring the first array and define its length.
+   tab2 : ARRAY_OF INTEGER[20]; // declaring the Second array and define its length.
+   i,j : INTEGER; // declaring the index .
+    Count: BOOLEAN;
+   Sum: INTEGER:=0; // The sum of all the distinct elements in the two given arrays.
+BEGIN
+Read(tab1);
+Read(tab2);
+// Adding the distinct elements in tab1 to Sum
+FOR i FROM 0 TO tab1.length-1 STEP 1  DO 
+    Count:=FALSE;
+    FOR j FROM 0 TO tab2.length-1 STEP 1  DO 
+        IF (tab1[i]=tab2[j]) DO
+        Count:=TRUE;
+        END_IF
+    END_FOR
+    IF (Count=FALSE) DO
+        Sum:=Sum+tab1[i];
+    END_IF
+END_FOR
+// Adding the distinct elements in tab2 to Sum
+FOR j FROM 0 TO tab2.length-1 STEP 1  DO 
+    Count:=FALSE;
+    FOR i FROM 0 TO tab1.length-1 STEP 1  DO 
+        IF (tab2[j]=tab1[i]) DO
+        Count:=TRUE;
+        END_IF
+    END_FOR
+    IF (Count=FALSE) DO
+        Sum:=Sum+tab2[j];
+    END_IF
+END_FOR
+//The result
+        Write('The Sum of all the distinct elememts is:',Sum);
+END
+// First Problem
+//Solution N°2: Data Stucture: Hash table
+ALGORITHM Sum_Of_Distinct_Elements_2
+VAR
+   htab : HASH_TABLE<INTEGER,INTEGER>; // declaring the hash table
+   tab1 : ARRAY_OF INTEGER[20]; // declaring the first array and define its length.
+   tab2 : ARRAY_OF INTEGER[20]; // declaring the Second array and define its length.
+   i,j : INTEGER; // declaring the index .
+   Count: INTEGER; // declaring the number of similarities
+   Sum: INTEGER:=0; // declaring the sum of all the distinct elements in the two given arrays.
+BEGIN
+Read(tab1);
+Read(tab2);
+//Inserting all the elements with their similarities from tab1 in htab
+FOR i FROM 0 TO tab1.length-1 STEP 1  DO 
+    Count:=1;
+    FOR j FROM 0 TO tab2.length-1 STEP 1  DO 
+        IF (tab1[i]=tab2[j]) DO
+        Count:=Count+1;
+        END_IF
+    END_FOR
+    htab.insert(tab[i],Count);
+END_FOR
+//Inserting the rest of tab2 elements in htab
+FOR j FROM 0 TO tab2.length-1 STEP 1  DO 
+        IF (htab.lookup(tab2[j])=FALSE) DO
+            htab.insert(tab2[j],1);
+        END_IF
+END_FOR
+//Adding all the elements with number of similarities equal to 1 to Sum
+// In tab1
+FOR i FROM 0 TO tab1.length-1 STEP 1  DO 
+        IF (htab.get(tab1[i])=1) DO
+            Sum:=Sum+tab1[i];
+        END_IF
+END_FOR
+// In tab2
+FOR j FROM 0 TO tab2.length-1 STEP 1  DO 
+        IF (htab.get(tab2[j])=1) DO
+            Sum:=Sum+tab2[j];
+        END_IF
+END_FOR
+// The result
+        Write('The Sum of all the distinct elememts is:',Sum);
+END
+// Second Problem
+//Solution N°1: Data Stucture: Array
+ALGORITHM Sum_Of_overlapping_elements_1
+VAR
+   tab1 : ARRAY_OF INTEGER[20]; // declaring the first array and define its length.
+   tab2 : ARRAY_OF INTEGER[20]; // declaring the Second array and define its length.
+   i,j : INTEGER; // declaring the index.
+   Sum: INTEGER:=0; // declaring the sum of all the distinct elements in the two given arrays.
+BEGIN
+Read(tab1);
+Read(tab2);
+// Adding double of all the elements with number of similarity equal to two to Sum
+FOR i FROM 0 TO tab1.length-1 STEP 1  DO 
+        FOR j FROM 0 TO tab2.length-1 STEP 1  DO 
+            IF (tab1[i]=tab2[j]) DO
+            Sum:=Sum+tab1[i]*2;
+            END_IF
+        END_FOR
+END_FOR
+// The result
+        Write('The Sum of all overlapping elememts is:',Sum);
+END
+// Second Problem
+//Solution N°2: Data Stucture: Hash table
+ALGORITHM Sum_Of_overlapping_elements_2
+VAR
+   htab : HASH_TABLE<INTEGER,INTEGER>; // declaring the hash table
+   tab1 : ARRAY_OF INTEGER[20]; // declaring the first array and define its length.
+   tab2 : ARRAY_OF INTEGER[20]; // declaring the Second array and define its length.
+   i,j : INTEGER; // declaring the index.
+   Sum: INTEGER:=0; // declaring the sum of all the distinct elements in the two given arrays.
+BEGIN
+Read(tab1);
+Read(tab2);
+//Adding all the elements with number of similarity equal to two to htab
+FOR i FROM 0 TO tab1.length-1 STEP 1  DO 
+        FOR j FROM 0 TO tab2.length-1 STEP 1  DO 
+            IF (tab1[i]=tab2[j]) DO
+            htab.insert(tab1[i],2);
+            END_IF
+        END_FOR
+END_FOR
+// Adding double htab's elements to Sum
+FOR i FROM 0 TO tab1.length-1 STEP 1  DO 
+        IF (htab.lookup(tab1[i]=TRUE)) DO
+        Sum:=Sum+tab1[i]*2;
+END_FOR
+// The result
+        Write('The Sum of all overlapping elememts is:',Sum);
+END

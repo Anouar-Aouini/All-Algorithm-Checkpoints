@@ -1,0 +1,24 @@
+ALGORITHM Insertion_sort 
+VAR
+    arr: array_name : ARRAY_OF INTEGER[];
+    i,j,n: INTEGER ;
+BEGIN
+        Read(arr);
+        n:=arr.length-1;
+        FOR i FROM 1 TO n STEP 1  DO
+            // Taking the last element of the array of i elements as a key
+            key:= arr[i];
+            j:= i-1;
+            /* Move elements of arr[0..i-1], that are  
+            greater than key, to one position ahead  
+             of their current position */
+            
+            WHILE (j>=0 && arr[j]>key) DO
+                arr[j+1]:=arr[j];
+                j:=j-1;
+            END_WHILE
+            // Insert of the key element in the right position
+            arr[j + 1] = key;  
+        END_FOR 
+        Write("The sorted array is:",arr);
+END
